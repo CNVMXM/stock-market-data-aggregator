@@ -5,12 +5,13 @@
     <parent>
         <groupId>com.cnvmxm</groupId>
         <artifactId>stock-market-data-aggregator</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>4.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>config-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <name>config-server</name>
+    <version>4.0.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
