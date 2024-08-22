@@ -1,7 +1,5 @@
-spring:
-  boot:
-    admin:
-      context-path: /admin
+server:
+  port: 8761
 
 eureka:
   instance:
