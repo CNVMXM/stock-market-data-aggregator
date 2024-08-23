@@ -1,5 +1,6 @@
 package com.cnvmxm.apigateway.config;
 
+import com.cnvmxm.apigateway.security.JwtValidationFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,8 @@ public class RouteConfig {
             RouteLocatorBuilder locatorBuilder
     ) {
         return locatorBuilder.routes()
-                .route("portfolio-service", r -> r.path("/mystocks/**")
+                .route("portfolio-service", r -> r.path("/mystocks")
+                        .filters(f -> f.filter(new JwtValidationFilter()))
                         .uri(portfolioServerUrl))
                 .route("discovery-service", r -> r.path("/eureka")
                         .uri(discoveryServerUrl))
