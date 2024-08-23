@@ -1,11 +1,9 @@
 spring:
     application:
         name: price-service
-    profiles:
-        active: dev
     config:
         activate:
-            on-profile: dev
+            on-profile: dev,configserver
         import: optional:configserver:http://localhost:8888
     cloud:
         config:
