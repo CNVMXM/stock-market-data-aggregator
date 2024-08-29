@@ -11,6 +11,9 @@ import java.util.List;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-    @Query("SELECT st FROM Client cl JOIN cl.stocks st WHERE cl.clientId = :clientId")
+    @Query("""
+        SELECT st FROM Client cl JOIN cl.stocks
+         st WHERE cl.clientId = :clientId
+        """)
     List<Stock> findStocksByClientId(@Param("clientId") Long clientId);
 }
