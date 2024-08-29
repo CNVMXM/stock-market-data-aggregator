@@ -26,4 +26,17 @@ public class PriceProviderService {
 
         return stocksMap;
     }
+
+    public HashMap<String, Double> provideMyStocks(List<String> myStocksList) {
+
+        List<Price> clientPrices = priceRepository.findByStockNameIn(myStocksList);
+
+        HashMap<String, Double> stocksMap = new HashMap<>();
+
+        for (Price price : clientPrices) {
+            stocksMap.put(price.getStockName(), price.getStockValue());
+        }
+
+        return stocksMap;
+    }
 }
