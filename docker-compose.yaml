@@ -1,0 +1,31 @@
+services:
+
+  postgres-price:
+    image: 'postgres:latest'
+    container_name: 'price-service-db'
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=pricedb
+    ports:
+      - '5433:5432'
+    volumes:
+    - ./volumes/price:/data/postgres
+    healthcheck:
+      test: "pg_isready -U priceservice -d pricedb"
+
+  postgres-portfolio:
+    image: 'postgres:latest'
+    container_name: 'portfolio-service-db'
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=portfoliodb
+    ports:
+      - '5434:5432'
+    volumes:
+      - ./volumes/portfolio:/data/postgres
+    healthcheck:
+      test: "pg_isready -U portfolioservice -d portfoliodb"
