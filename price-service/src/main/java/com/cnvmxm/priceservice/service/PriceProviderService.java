@@ -1,10 +1,16 @@
 package com.cnvmxm.priceservice.service;
 
+import com.cnvmxm.priceservice.client.PriceUpdateClient;
+import com.cnvmxm.priceservice.converter.SymbolToPriceConverter;
+import com.cnvmxm.priceservice.model.dto.SymbolDTO;
 import com.cnvmxm.priceservice.model.entity.Price;
 import com.cnvmxm.priceservice.repository.PriceRepository;
+import com.cnvmxm.priceservice.util.ProcessPriceToMapUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,30 +19,47 @@ import java.util.List;
 public class PriceProviderService {
 
     private final PriceRepository priceRepository;
+    private final PriceUpdateClient priceUpdateClient;
+    private final ProcessPriceToMapUtil processPriceToMapUtil;
+    private final SymbolToPriceConverter symbolToPriceConverter;
 
-    public HashMap<String, Double> provideStocks() {
+    public HashMap<String, BigDecimal> provideStocks() {
 
-        List<Price> prices =  priceRepository.findAll();
-
-        HashMap<String, Double> stocksMap = new HashMap<>();
-
-        for (Price price : prices) {
-            stocksMap.put(price.getStockName(), price.getStockValue());
+        ResponseEntity<List<SymbolDTO>> responseEntity = priceUpdateClient.pollStocks();
+        if (responseEntity.getStatusCode().is2xxSuccessful()) {
+            List<SymbolDTO> response = responseEntity.getBody();
+            if(response != null) {
+                List<Price> prices = symbolToPriceConverter.convertSymbolToPrice(response);
+                priceRepository.saveAll(prices);
+                return processPriceToMapUtil.priceToMap(priceRepository.findAll());
+            } else {
+                throw new IllegalArgumentException("Недопустимое значение: response равен null");
+            }
+        } else {
+            // Обработка ошибки
+            System.out.println("Ошибка получения данных: " + responseEntity.getStatusCode());
+            return new HashMap<>();
         }
-
-        return stocksMap;
     }
 
-    public HashMap<String, Double> provideMyStocks(List<String> myStocksList) {
+    public HashMap<String, BigDecimal> provideMyStocks(List<String> myStocksList) {
 
-        List<Price> clientPrices = priceRepository.findByStockNameIn(myStocksList);
-
-        HashMap<String, Double> stocksMap = new HashMap<>();
-
-        for (Price price : clientPrices) {
-            stocksMap.put(price.getStockName(), price.getStockValue());
+        ResponseEntity<List<SymbolDTO>> responseEntity = priceUpdateClient.pollStocks();
+        if (responseEntity.getStatusCode().is2xxSuccessful()) {
+            List<SymbolDTO> response = responseEntity.getBody();
+            if(response != null) {
+                List<Price> prices = symbolToPriceConverter.convertSymbolToPrice(response);
+                priceRepository.saveAll(prices);
+                return processPriceToMapUtil.priceToMap(priceRepository.findByStockNameIn(myStocksList));
+            } else {
+                throw new IllegalArgumentException("Недопустимое значение: response равен null");
+            }
+        } else {
+            // Обработка ошибки
+            System.out.println("Ошибка получения данных: " + responseEntity.getStatusCode());
+            return new HashMap<>();
         }
 
-        return stocksMap;
+
     }
 }

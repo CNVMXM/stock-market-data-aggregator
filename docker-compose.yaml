@@ -29,3 +29,19 @@ services:
       - ./volumes/portfolio:/data/postgres
     healthcheck:
       test: "pg_isready -U portfolioservice -d portfoliodb"
+
+
+  postgres-aggregator:
+    image: 'postgres:latest'
+    container_name: 'aggregator-service-db'
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=aggregatordb
+    ports:
+      - '5435:5432'
+    volumes:
+      - ./volumes/portfolio:/data/postgres
+    healthcheck:
+      test: "pg_isready -U aggregatorservice -d aggregatordb"

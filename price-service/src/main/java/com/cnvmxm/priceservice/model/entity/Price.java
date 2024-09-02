@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -16,5 +18,11 @@ public class Price {
     private Long id;
 
     private String stockName;
-    private Double stockValue;
+    private BigDecimal stockValue;
+
+    //id генерируется Jpa автоматически
+    public Price(String symbol, BigDecimal price) {
+        this.stockName = symbol;
+        this.stockValue = price;
+    }
 }

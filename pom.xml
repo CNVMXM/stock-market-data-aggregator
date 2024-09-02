@@ -37,6 +37,18 @@
         </dependency>
 
         <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -58,6 +70,7 @@
             <artifactId>maven-jar-plugin</artifactId>
             <version>3.4.2</version>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -97,6 +110,7 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
@@ -107,6 +121,7 @@
         <module>auth-service</module>
         <module>portfolio-service</module>
         <module>price-service</module>
+        <module>aggregator-service</module>
     </modules>
 
 </project>

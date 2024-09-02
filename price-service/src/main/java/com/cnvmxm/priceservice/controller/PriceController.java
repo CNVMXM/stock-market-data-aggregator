@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,12 +18,12 @@ public class PriceController {
     private final PriceProviderService priceProviderService;
 
     @GetMapping()
-    public HashMap<String, Double> getStocks() {
+    public HashMap<String, BigDecimal> getStocks() {
         return priceProviderService.provideStocks();
     }
 
     @GetMapping("/client")
-    public HashMap<String, Double> getMyStocksPrices(List<String> myStocksList) {
+    public HashMap<String, BigDecimal> getMyStocksPrices(List<String> myStocksList) {
         return priceProviderService.provideMyStocks(myStocksList);
     }
 }
