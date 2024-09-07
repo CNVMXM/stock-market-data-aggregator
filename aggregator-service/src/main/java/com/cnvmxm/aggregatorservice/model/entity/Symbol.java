@@ -2,40 +2,36 @@ package com.cnvmxm.aggregatorservice.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
+import static lombok.AccessLevel.PRIVATE;
+
 @Entity
 @Data
+@FieldDefaults(level = PRIVATE)
 public class Symbol {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    @Column
-    private String symbol;
+    String symbol;
 
-    @Column
-    private BigDecimal high;
+    BigDecimal high;
 
-    @Column
-    private BigDecimal low;
+    BigDecimal low;
 
-    @Column
-    private BigDecimal price;
+    BigDecimal price;
 
-    @Column
-    private BigDecimal volume;
+    BigDecimal volume;
 
-    @Column
-    private String latestTradingDay;
+    String latestTradingDay;
 
-    @Column
-    private BigDecimal previousClose;
+    BigDecimal previousClose;
 
-    @Column
-    private BigDecimal change;
+    BigDecimal change;
 
-    @Column
-    private String changePercent;
+    String changePercent;
 }

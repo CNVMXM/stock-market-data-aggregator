@@ -2,33 +2,36 @@ package com.cnvmxm.aggregatorservice.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
+import static lombok.AccessLevel.PRIVATE;
+
+@ToString
 @Entity
 @Data
+@FieldDefaults(level = PRIVATE)
 public class Quote {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-    @Column
-    private String symbol;
+    String symbol;
 
-    @Column
-    private String name;
+    String name;
 
-    @Column
-    private String exchange;
+    String exchange;
 
-    @Column
-    private String assetType;
 
-    @Column
-    private String ipoDate;
+    String assetType;
 
-    @Column
-    private String delistingDate;
 
-    @Column
-    private String status;
+    String ipoDate;
+
+
+    String delistingDate;
+
+    String status;
 
 }

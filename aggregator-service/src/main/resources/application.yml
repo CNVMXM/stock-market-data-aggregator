@@ -12,8 +12,8 @@ spring:
     enabled: true
 
 nyse:
-  api-key: 3Q91ALMC4A07C0EX
-
+#  api-key: 3Q91ALMC4A07C0EX
+  api-key: demo
 
 server:
   port: 8081

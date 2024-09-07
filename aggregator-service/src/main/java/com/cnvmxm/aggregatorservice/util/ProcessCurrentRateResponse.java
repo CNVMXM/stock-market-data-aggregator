@@ -1,8 +1,6 @@
 package com.cnvmxm.aggregatorservice.util;
 
-import com.cnvmxm.aggregatorservice.client.NYSEGet;
 import com.cnvmxm.aggregatorservice.model.dto.SymbolDTO;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

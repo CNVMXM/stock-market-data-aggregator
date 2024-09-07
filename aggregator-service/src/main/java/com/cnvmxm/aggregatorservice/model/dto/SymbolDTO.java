@@ -1,6 +1,7 @@
 package com.cnvmxm.aggregatorservice.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -8,6 +9,8 @@ import java.math.BigDecimal;
 
 @Data
 public class SymbolDTO {
+
+    @NotNull
     @JsonProperty("symbol")
     private String symbol;
 

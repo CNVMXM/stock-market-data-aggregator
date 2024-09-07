@@ -42,6 +42,6 @@ services:
     ports:
       - '5435:5432'
     volumes:
-      - ./volumes/portfolio:/data/postgres
+      - ./volumes/aggregator:/data/postgres
     healthcheck:
       test: "pg_isready -U aggregatorservice -d aggregatordb"
