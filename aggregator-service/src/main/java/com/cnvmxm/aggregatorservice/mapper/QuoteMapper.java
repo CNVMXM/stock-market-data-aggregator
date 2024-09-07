@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface QuoteMapper {
 
     QuoteMapper quoteMapper = Mappers.getMapper(QuoteMapper.class);

@@ -3,16 +3,22 @@ package com.cnvmxm.aggregatorservice.model.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 
-@Data
+@Getter
+@Setter
 public class SymbolDTO {
 
     @NotNull
     @JsonProperty("symbol")
     private String symbol;
+
+    @JsonProperty("open")
+    private BigDecimal open;
 
     @JsonProperty("high")
     private BigDecimal high;

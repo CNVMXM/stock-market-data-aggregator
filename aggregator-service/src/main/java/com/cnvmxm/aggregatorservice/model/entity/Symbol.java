@@ -19,6 +19,8 @@ public class Symbol {
 
     String symbol;
 
+    BigDecimal open;
+
     BigDecimal high;
 
     BigDecimal low;

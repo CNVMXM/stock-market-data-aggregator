@@ -4,5 +4,15 @@
       "name": "nyse.api-key",
       "type": "java.lang.String",
       "description": "Description for nyse.api-key."
-  }
-] }
+    },
+    {
+      "name": "nyse.url",
+      "type": "java.lang.String",
+      "description": "Description for nyse.url."
+    },
+    {
+      "name": "nyse.personal.api-key",
+      "type": "java.lang.String",
+      "description": "Description for nyse.personal.api-key."
+    }
+  ] }

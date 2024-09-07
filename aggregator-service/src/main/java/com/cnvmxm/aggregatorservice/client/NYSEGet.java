@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface NYSEGet {
     //параметр produces = "application/json" указываает на тип возвращаемого значения, который
     //будет храниться в response
-//    @GetMapping(value = "/query?function=LISTING_STATUS&apikey={apiKey}")
-//    ResponseEntity<Resource> fetchListingStatus(@PathVariable("apiKey") String apiKey);
-//
-//    @GetMapping(value = "/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={apiKey}")
-//    ResponseEntity<String> fetchGlobalQuote(@PathVariable("symbol") String symbol, @PathVariable("apiKey") String apiKey);
+    @Deprecated
+    @GetMapping(value = "/query?function=LISTING_STATUS&apikey={apiKey}")
+    ResponseEntity<Resource> fetchListingStatus(@PathVariable("apiKey") String apiKey);
+
+    @GetMapping(value = "/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={apiKey}")
+    ResponseEntity<String> fetchGlobalQuote(@PathVariable("symbol") String symbol, @PathVariable("apiKey") String apiKey);
 
 }
